@@ -28,7 +28,7 @@
 <meta property="og:description" content="二分答案&#x2F;二分专题模板origin : 模板源自去年上课，但是tourist也是这么写的。所以非常好。 右边是可行区间1. l,r边界 保证r时一定可以取到。否则会返回r，尽管r没有用 mid&#x3D;(l+r)&#x2F;2; if (ok) r&#x3D;mid; else l&#x3D;mid+1 若不能保证r一定可以取到，则取r+1为r边界。这样如果返回r+1，则是全区间无解。 l必为不可行或最优可行，不然会存在比l小的更优解">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-09T10:20:48.000Z">
-<meta property="article:modified_time" content="2020-09-09T12:44:02.147Z">
+<meta property="article:modified_time" content="2020-09-09T15:30:15.597Z">
 <meta property="article:author" content="yantia">
 <meta property="article:tag" content="二分">
 <meta property="article:tag" content="二分答案">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-09 18:20:48 / 修改时间：20:44:02" itemprop="dateCreated datePublished" datetime="2020-09-09T18:20:48+08:00">2020-09-09</time>
+              <time title="创建时间：2020-09-09 18:20:48 / 修改时间：23:30:15" itemprop="dateCreated datePublished" datetime="2020-09-09T18:20:48+08:00">2020-09-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -481,6 +481,61 @@ check()函数判断这个值是否大于等于x。
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
