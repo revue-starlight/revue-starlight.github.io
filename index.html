@@ -160,6 +160,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/HDU-1937/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yantia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/17/HDU-1937/" class="post-title-link" itemprop="url">HDU_1937</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-17 16:46:26 / 修改时间：16:57:46" itemprop="dateCreated datePublished" datetime="2020-09-17T16:46:26+08:00">2020-09-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是尺取？"><a href="#什么是尺取？" class="headerlink" title="什么是尺取？"></a>什么是尺取？</h2><pre><code>尺取是一个区间内的需要再连续段满足某个性质的情况下求解某个最优解（通常是最短区间之类）
+</code></pre><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><pre><code>一群人看电影，有一些位置被占据，剩下的人要尽可能的坐的靠近。给出空的位置矩阵，坐的尽可能近的衡量标准是在一群人的位置最外面套一个最小矩形，这个矩形的面积。
+电影院行列皆小于300，人数小于300*300,保证有解。
+</code></pre><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>行列皆小于300，枚举多少行，从1—300是 O(n)。枚举从第几行开始，尺取共计<br>$O(n^3)$</p>
+<p>问题复杂在二维前缀和的处理上。还有要保证如果某一行的有效座位大于k人，会出现l&gt;r的情况，此时要l++并重新计算sum</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">400</span>;</span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> r,c,k;</span><br><span class="line"><span class="keyword">int</span> a[N][N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=r;i++)&#123;</span><br><span class="line">        getchar();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=c;j++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;ch);</span><br><span class="line">            <span class="keyword">if</span> (ch==<span class="string">&#x27;X&#x27;</span>) a[i][j]=<span class="number">0</span>; <span class="keyword">else</span> a[i][j]=<span class="number">1</span>;</span><br><span class="line">            a[i][j]=a[i<span class="number">-1</span>][j]+a[i][j<span class="number">-1</span>]-a[i<span class="number">-1</span>][j<span class="number">-1</span>]+a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=r;i++)&#123;<span class="comment">//line num</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=r-i+<span class="number">1</span>;j++)&#123;<span class="comment">//firstline</span></span><br><span class="line">            <span class="keyword">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>,sum=a[j+i<span class="number">-1</span>][<span class="number">1</span>]-a[j<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (r&lt;=c)&#123;</span><br><span class="line">                <span class="keyword">if</span> (sum&gt;=k) ans=<span class="built_in">min</span>(ans,(r-l+<span class="number">1</span>)*i);</span><br><span class="line">                <span class="keyword">if</span> (sum&gt;=k)&#123;</span><br><span class="line">                    sum-=(a[i+j<span class="number">-1</span>][l]-a[i+j<span class="number">-1</span>][l<span class="number">-1</span>]-a[j<span class="number">-1</span>][l]+a[j<span class="number">-1</span>][l<span class="number">-1</span>]);</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum&lt;k)&#123;</span><br><span class="line">                    r++;</span><br><span class="line">                    sum+=(a[i+j<span class="number">-1</span>][r]-a[i+j<span class="number">-1</span>][r<span class="number">-1</span>]-a[j<span class="number">-1</span>][r]+a[j<span class="number">-1</span>][r<span class="number">-1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (l&gt;r)&#123;</span><br><span class="line">                    r++;</span><br><span class="line">                    sum=a[i+j<span class="number">-1</span>][r]-a[i+j<span class="number">-1</span>][r<span class="number">-1</span>]-a[j<span class="number">-1</span>][r]+a[j<span class="number">-1</span>][r<span class="number">-1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;r,&amp;c,&amp;k)!=EOF)&#123;</span><br><span class="line">        <span class="keyword">if</span> (r==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/13/ots/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,20 +794,20 @@ check()函数判断这个值是否大于等于x。
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
