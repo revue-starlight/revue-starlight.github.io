@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-10-08 16:18:00 / 修改时间：17:49:09" itemprop="dateCreated datePublished" datetime="2020-10-08T16:18:00+08:00">2020-10-08</time>
+              <time title="创建时间：2020-10-08 16:18:00 / 修改时间：17:55:30" itemprop="dateCreated datePublished" datetime="2020-10-08T16:18:00+08:00">2020-10-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,12 +220,12 @@
 <li>不过呢，3 x 2被2筛过了，3 x 4 也被筛过了， 3 x 6也被筛过了。（里面有2，被2筛过了）<br>所以只要筛3 x 3和 3 x 5就可以啦。  </li>
 </ol>
 <p>你可以发现第二步里的第二个乘数，也就是3和5，其实那些数字是被2筛过后剩下的。<br>那么，g(n,j)只要用g(n,j-1)筛一下就可以了，其实大可不必，因为啊，这边左边的乘数是prime[2]==3，那么源式子减去g(n/prime[j],j-1)就可以了</p>
-<p>好了，我们现在算出<br>$g(n,j)=g(n,j-1)-prime[j]x(g(\lfloor\frac{n}{prime[j]}\rfloor))$  </p>
+<p>好了，我们现在算出<br>$g(n,j)=g(n,j-1)-prime[j] \times (g(\lfloor\frac{n}{prime[j]}\rfloor))$  </p>
 <ol>
 <li>不过这边还偷偷摸摸的减掉了已经筛出来的所有素数。<br>$\star\star\star\star\star$我懒得用g(100,3)和g(100,4)举例了读者自证吧。<br>所以要补上被误减的之前筛好的所有素数。<br>那么以前筛好的素数可以用什么表示呢？如果你之前维护了一个前缀和的sum数组，那么补上$sum_{i-1}$或者你可以用$g(prime[j-1], j-1)$。（j-1有冗余,实际上$g(n,j)里prime[j]xprime[j]&gt;=n$都是可以的。）</li>
 </ol>
-<p>所以<br>$g(n,j)=g(n,j-1)-prime[j]x(g(\lfloor\frac{n}{prime[j]}\rfloor)-sum_{i-1}$</p>
-<p>由埃氏筛拓展，如果$prime[j] x prime[j] &gt; n$筛不出来了，那就$g(n,j)=g(n,j-1)$</p>
+<p>所以<br>$g(n,j)=g(n,j-1)-prime[j] \times (g(\lfloor\frac{n}{prime[j]}\rfloor)-sum_{i-1})$</p>
+<p>由埃氏筛拓展，如果$prime[j] \times prime[j] &gt; n$筛不出来了，那就$g(n,j)=g(n,j-1)$</p>
 
       
     </div>
