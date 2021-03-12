@@ -222,7 +222,7 @@
       
         <h1 id="namomo-7-补题"><a href="#namomo-7-补题" class="headerlink" title="namomo_7 补题"></a>namomo_7 补题</h1><h2 id="A-Gym"><a href="#A-Gym" class="headerlink" title="A.Gym"></a>A.Gym</h2><p>模拟/Fe</p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>环形跑道，给出二人距离，一人方向，二者速度，另外一个人方向不定，求最快相遇时间。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span> (T--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n,m,x,y;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;x&gt;&gt;y;</span><br><span class="line">        <span class="keyword">double</span> t1=(<span class="keyword">double</span>)(n-m)*<span class="number">1.0</span>/(<span class="keyword">double</span>)(x+y);</span><br><span class="line">        <span class="keyword">double</span> t2;</span><br><span class="line">        <span class="keyword">if</span> (x&lt;y)&#123;</span><br><span class="line">            t2=<span class="number">1.0</span>*m/(<span class="number">1.0</span>*(y-x));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x==y) t2=INT_MAX;</span><br><span class="line">        <span class="keyword">if</span> (x&gt;y) t2=(<span class="number">1.0</span>*(n-m))/(<span class="number">1.0</span>*(x-y));</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">10</span>)&lt;&lt;<span class="built_in">min</span>(t1,t2)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>四则运算大小等于全是从左往右，在最左端写个1.0*。卡在转浮点上。</p>
-<p><br/><br/><br/><br/></p>
+<p><br><br><br><br></p>
 <h2 id="C-Number"><a href="#C-Number" class="headerlink" title="C.Number"></a>C.Number</h2><p>数论/Cu</p>
 <h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>初始有n个数字，第i个数字为 $a_i$ 。<br>每次操作，可以选择一个数字x，把它修改为 $x^2$或者 $\lfloor \sqrt{x} \rfloor$。<br>最少需要操作几次，才能让所有数字都相等？</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>铜牌题，首先考虑一个平方数平方开根号等于没做，不断平方也不可能收束到一个数。故往开方考虑，开方到最后肯定开到1。而开方再平方会到另外一个等价类里面去。嘛。。等价类感官上更像一点，就是令某个数的等价类为x,x^2,x^4….。而意识到复杂度之后，☆复杂度☆ $a_i &lt; 1e5$ ，$n &lt; 1e5$而且一个数开3次方or平3次方基本上就越界了，那所有的数字可以在小常数时间内搞出他到 所有 可达数的位置。大概是10次吧。<br>考虑开一个map,其实数组也行。记录这个可达数可以被多少数字到达，再开一个map，记录这个可达数的总步数。</p>
@@ -324,20 +324,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,7 +364,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
