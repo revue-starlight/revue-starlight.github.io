@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-12 18:39:38" itemprop="dateModified" datetime="2021-03-12T18:39:38+08:00">2021-03-12</time>
+                <time title="修改时间：2021-03-12 18:42:16" itemprop="dateModified" datetime="2021-03-12T18:42:16+08:00">2021-03-12</time>
               </span>
 
           
@@ -209,12 +209,12 @@
 </code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>·算法导论·</p>
 <p>·最小割模型在信息学竞赛中的应用·</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuyiqi/archive/2012/03/12/2391960.html">一篇博客</a></p>
-<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="网络与流"><a href="#网络与流" class="headerlink" title="网络与流"></a>网络与流</h2><h2 id="流网络"><a href="#流网络" class="headerlink" title="流网络"></a>流网络</h2><p>$G = (V,E)$是一个有向图，每条边$<u,v>\in E$ 均有非负容量$c(u,v)&gt;0$，有两特殊点，源点$s$和终点$t$。</u,v></p>
-<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p>流是一个实值函数$f =V \times V \rightarrow R$。 满足三个性质：</p>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="网络与流"><a href="#网络与流" class="headerlink" title="网络与流"></a>网络与流</h2><h2 id="流网络"><a href="#流网络" class="headerlink" title="流网络"></a>流网络</h2><p>$G = (V,E)$是一个有向图，<br>每条边 $<u,v>\in E$ 均有非负容量 $c(u,v)&gt;0$，有两特殊点，源点 $s$ 和终点 $t$ 。</u,v></p>
+<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p>流是一个实值函数 $f =V \times V \rightarrow R$。 满足三个性质：</p>
 <p>(1) 容量限制：对于$\forall u,v\in V, f(u,v)&lt;= c(u,v)$</p>
 <p>(2) 反对称性：$f(u,v)=-f(v,u)$</p>
 <p>(3) 流守恒性：$\forall u \in V- {s,t}$，要求$\sum\limits_{v\in V}f(u,v)=0$</p>
-<p>注意点：**$<s,v> \in E$时才有值，否则值等于 0！！！</s,v></p>
+<p>注意点：$<s,v> \in E$ 时才有值，否则值等于 0！！！</s,v></p>
 <p>称$f(u,v)$从 u 到 v 的流。</p>
 <p>现在我们引入流 f，流 f 的值为$|f|=\sum\limits_{v \in V} f(s,v)$。<br>比如算导中那张图$|f|=19$</p>
 <h2 id="割"><a href="#割" class="headerlink" title="割"></a>割</h2><p>在流网络 G=(V,E)中，将点集 V 划分为 S,T(T=V-S)两部分，使得源$s\in S$且汇$t \in T$</p>
